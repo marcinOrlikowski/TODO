@@ -5,14 +5,14 @@ import os
 app = Flask(__name__)
 tasks_file = 'tasks.json'
 
-# Load tasks from the JSON file
+# Load tasks from JSON file
 def load_tasks():
     if os.path.exists(tasks_file):
         with open(tasks_file, 'r') as f:
             return json.load(f)
     return []
 
-# Save tasks to the JSON file
+# Save tasks to JSON file
 def save_tasks(tasks):
     with open(tasks_file, 'w') as f:
         json.dump(tasks, f)

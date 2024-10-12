@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(data => {
                 if (data.success) {
                     const taskElement = document.getElementById(`task-${taskId}`);
-                    taskElement.remove(); // Remove task from DOM
+                    taskElement.remove(); 
                     toggleNoTasksMessage(); // Check if we need to show the no tasks message
                 }
             });
