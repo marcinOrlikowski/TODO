@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>TODO</h1>
+
+    <!-- Task Form -->
+    <form id="add-task-form">
+        <input type="text" name="task" id="task-input" placeholder="Add a new task" required>
+        <button type="submit">Add Task</button>
+    </form>
+
+    <!-- Task List -->
+    <ul id="task-list">
+        {% for task in tasks %}
+        <li class="task-item {{ 'completed' if task.completed else '' }}" id="task-{{ task.id }}">
+            <span class="task-text">{{ task.task }}</span>
+            <div class="task-actions">
+                <button type="button" class="complete-btn" data-task-id="{{ task.id }}">
+                    {{ 'Undo' if task.completed else 'Complete' }}
+                </button>
+                <button type="button" class="delete-btn" data-task-id="{{ task.id }}">Delete</button>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <p class="no-tasks {% if tasks|length > 0 %}hidden{% endif %}" id="no-tasks-message">No tasks found! Add a new task to get started.</p>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
